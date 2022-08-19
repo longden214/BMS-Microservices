@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Project.API.Data;
+using Project.API.Repositories;
 
 namespace Project.API
 {
@@ -23,6 +24,8 @@ namespace Project.API
         {
             services.AddDbContext<ProjectContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ProjectConnectionString")));
+
+            services.AddScoped<IProjectRepository, ProjectRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

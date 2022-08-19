@@ -9,6 +9,15 @@ services:
     volumes:
       - mongo_data:/data/db
 
+  projectdb:
+    container_name: projectdb
+    environment:
+      SA_PASSWORD: "ahihi214"
+      ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+      - "1433:1433"
+
   user.api:
     container_name: user.api
     environment:
@@ -18,3 +27,14 @@ services:
       - accountdb
     ports:
       - "8000:80"
+
+  project.api:
+    container_name: project.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:ProjectConnectionString=Server=projectdb;Database=ProjectDb;User Id=sa;Password=ahihi214;TrustServerCertificate=true"
+    depends_on:
+      - projectdb
+    ports:
+      - "8002:80"
+

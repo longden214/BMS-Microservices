@@ -4,12 +4,20 @@ services:
   accountdb:
     image: mongo
 
+  projectdb:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
   user.api:
     image: ${DOCKER_REGISTRY-}userapi
     build:
       context: .
       dockerfile: Services/User/User.API/Dockerfile
 
+  project.api:
+    image: ${DOCKER_REGISTRY-}projectapi
+    build:
+      context: .
+      dockerfile: Services/Project/Project.API/Dockerfile
 
 volumes:
   mongo_data:
