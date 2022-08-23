@@ -12,13 +12,13 @@ namespace Project.API.Data
         {
             if (!projectContext.Projects.Any())
             {
-                projectContext.Projects.AddRange(GetPreconfiguredOrders());
+                projectContext.Projects.AddRange(GetPreconfiguredProjects());
                 await projectContext.SaveChangesAsync();
                 logger.LogInformation("Seed database associated with context {DbContextName}", typeof(ProjectContext).Name);
             }
         }
 
-        private static IEnumerable<Entities.Project> GetPreconfiguredOrders()
+        private static IEnumerable<Entities.Project> GetPreconfiguredProjects()
         {
             return new List<Entities.Project>
             {

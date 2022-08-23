@@ -41,7 +41,7 @@ namespace Project.API.Controllers
 
         [HttpGet("GetProjectById/{id}", Name = "GetProjectById")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(IEnumerable<Entities.Project>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Entities.Project), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Entities.Project>> GetProjectById(int id)
         {
             var project = await _repository.GetProjectById(id);

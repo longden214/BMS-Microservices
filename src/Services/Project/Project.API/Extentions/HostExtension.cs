@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace Ordering.API.Extensions
+namespace Project.API.Extensions
 {
     public static class HostExtension
     {
