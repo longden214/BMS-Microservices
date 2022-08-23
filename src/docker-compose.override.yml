@@ -36,5 +36,27 @@ services:
     depends_on:
       - projectdb
     ports:
+      - "8001:80"
+
+
+  report.api:
+    container_name: report.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:ReportConnectionString=Server=projectdb;Database=ProjectDb;User Id=sa;Password=ahihi214;TrustServerCertificate=true"
+      - "GrpcSettings:ProjectUrl=http://project.grpc"
+    depends_on:
+      - projectdb
+    ports:
       - "8002:80"
+
+
+  project.grpc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:ProjectConnectionString=Server=projectdb;Database=ProjectDb;User Id=sa;Password=ahihi214;TrustServerCertificate=true"
+    depends_on:
+      - projectdb
+    ports:
+      - "8003:80"
 

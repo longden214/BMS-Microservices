@@ -19,5 +19,19 @@ services:
       context: .
       dockerfile: Services/Project/Project.API/Dockerfile
 
+  report.api:
+    image: ${DOCKER_REGISTRY-}reportapi
+    build:
+      context: .
+      dockerfile: Services/Report/Report.API/Dockerfile
+
+  project.grpc:
+    image: ${DOCKER_REGISTRY-}projectgrpc
+    build:
+      context: .
+      dockerfile: Services/Project/Project.Grpc/Dockerfile
+
 volumes:
   mongo_data:
+
+
