@@ -1,0 +1,53 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+option csharp_namespace = "Project.Grpc.Protos";
+
+service ProjectProtoService {
+	rpc GetProjects (GetProjectsRequest) returns (stream ProjectModel);
+    rpc GetProjectsByName (GetProjectsByNameRequest) returns (stream ProjectModel);
+    rpc GetProjectById (GetProjectByIdRequest) returns (ProjectModel);
+    rpc CreateProject (CreateProjectRequest) returns (ProjectModel);
+    rpc UpdateProject (UpdateProjectRequest) returns (UpdateProjectResponse);
+    rpc DeleteProject (DeleteProjectRequest) returns (DeleteProjectResponse);
+}
+
+message GetProjectsRequest{
+
+}
+
+message ProjectModel {
+	int32 projectId = 1;
+    string projectName = 2;
+    google.protobuf.Timestamp startDate = 3;
+    google.protobuf.Timestamp endDate = 4;
+    int32 status = 5;
+    bool isDeleted = 6;
+}
+
+message GetProjectsByNameRequest {
+    string name = 1;
+}
+
+message GetProjectByIdRequest{
+    int32 id = 1;
+}
+
+message CreateProjectRequest{
+    ProjectModel project = 1;
+}
+
+message UpdateProjectRequest{
+    ProjectModel project = 1;
+}
+
+message UpdateProjectResponse{
+    bool success = 1;
+}
+
+message DeleteProjectRequest{
+    int32 id = 1;
+}
+
+message DeleteProjectResponse{
+    bool success = 1;
+}
