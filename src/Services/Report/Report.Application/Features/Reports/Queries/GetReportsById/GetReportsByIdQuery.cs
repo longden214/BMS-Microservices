@@ -5,7 +5,7 @@ using System;
 
 namespace Report.Application.Features.Reports.Queries.GetReportsById
 {
-    public class GetReportsByIdQuery : IRequest<List<ReportListVM>>
+    public class GetReportsByIdQuery : IRequest<ReportListVM>
     {
         public int Id { get; set; }
 

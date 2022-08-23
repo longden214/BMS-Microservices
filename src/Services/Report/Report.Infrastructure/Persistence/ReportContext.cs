@@ -23,11 +23,11 @@ namespace Report.Infrastructure.Persistence
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedDate = DateTime.Now;
-                        entry.Entity.CreatedBy = "swn";
+                        entry.Entity.CreatedBy = "602d2149e773f2a3990b47f5";
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModifiedDate = DateTime.Now;
-                        entry.Entity.LastModifiedBy = "swn";
+                        entry.Entity.LastModifiedBy = "602d2149e773f2a3990b47f5";
                         break;
                 }
             }

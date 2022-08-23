@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Report.Application.Features.Reports.Queries.GetReportsById
 {
-    public class GetReportsByIdQueryHandler : IRequestHandler<GetReportsByIdQuery, List<ReportListVM>>
+    public class GetReportsByIdQueryHandler : IRequestHandler<GetReportsByIdQuery, ReportListVM>
     {
         private readonly IReportRepository _repository;
         private readonly IMapper _mapper;
@@ -20,11 +20,11 @@ namespace Report.Application.Features.Reports.Queries.GetReportsById
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<List<ReportListVM>> Handle(GetReportsByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ReportListVM> Handle(GetReportsByIdQuery request, CancellationToken cancellationToken)
         {
             var reports = await _repository.GetByIdAsync(request.Id);
 
-            return _mapper.Map<List<ReportListVM>>(reports);
+            return _mapper.Map<ReportListVM>(reports);
         }
     }
 }

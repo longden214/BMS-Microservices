@@ -6,6 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Project.Grpc.Protos;
+using Report.API.GrpcServices;
+using Report.Application;
+using Report.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +29,14 @@ namespace Report.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationService();
+            services.AddInfrastructureServices(Configuration);
+
+            //Grpc configuration
+            services.AddGrpcClient<ProjectProtoService.ProjectProtoServiceClient>
+                (o => o.Address = new Uri(Configuration["GrpcSettings:ProjectUrl"]));
+
+            services.AddScoped<ProjectGrpcService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
